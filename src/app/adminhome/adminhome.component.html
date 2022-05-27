@@ -1,0 +1,98 @@
+<h1>Food Heaven</h1>
+<div class="row">
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content white-text">
+          <div class="row">
+            <div class="col s5">
+              <form #menuForm="ngForm" (ngSubmit)="onSubmit(menuForm)">
+                <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="menuService.selectedMenu._id">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <label>Name :
+                        <label class="red-text">*</label>
+                      </label>
+                    <input type="text" name="name" #name="ngModel" [(ngModel)]="menuService.selectedMenu.name" placeholder="Enter food name" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <label>Category :</label>
+                    <input type="text" name="category" #name="ngModel" [(ngModel)]="menuService.selectedMenu.category" placeholder="Enter the food category">
+                    
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <label>Quantity :</label>
+                    <input type="text" name="quantity" #name="ngModel" [(ngModel)]="menuService.selectedMenu.quantity" placeholder="Enter the quantity">
+                    
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <label>Order Status :</label>
+                    <input type="text" name="orderStatus" #name="ngModel" [(ngModel)]="menuService.selectedMenu.orderStatus" placeholder="Enter order status">
+                    
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label>Available Status :</label>
+                      <input type="text" name="availableStatus" #name="ngModel" [(ngModel)]="menuService.selectedMenu.availableStatus" placeholder="Enter available status">
+                      
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                        <label>Price :</label>
+                      <input type="text" name="price" #name="ngModel" [(ngModel)]="menuService.selectedMenu.price" placeholder="Enter the price">
+                      
+                    </div>
+                  </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <button class="btn btn-custom right" type="button" (click)="resetForm(menuForm)">Reset</button>
+                    <button class="btn btn-custom right" type="submit" [disabled]="!menuForm.valid">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col s7">
+                <table class="responsive-table highlight">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Quantity</th>
+                        <th>Order Status</th>
+                        <th>Available Status</th>
+                        <th>Price</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tr *ngFor="let men of menuService.menus">
+                      <td>{{men.name}}</td>
+                      <td>{{men.category}}</td>
+                      <td>{{men.quantity}}</td>
+                      <td>{{men.orderStatus}}</td>
+                      <td>{{men.availableStatus}}</td>
+                      <td>{{men.price}}</td>
+                      <td>
+                          <a class="action-btn" (click)="onEdit(men)">
+                            <i class="material-icons">edit</i>
+                          </a>
+                          <a class="action-btn" (click)="onDelete(men._id,menuForm)">
+                            <i class="material-icons">delete</i>
+                          </a>
+                        </td>
+                    </tr>
+                  </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+<input type="button" (click)="onLogout()" value="Logout" />
